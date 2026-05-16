@@ -14,3 +14,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+*.tmp
+*.obj
+*.exp
+*.lib
+.idea
