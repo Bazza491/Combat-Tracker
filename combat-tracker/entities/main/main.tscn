@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c20l8giktk82a"]
+
+[node name="Main" type="Node" unique_id=518451133]
+
+[node name="Control" type="Control" parent="." unique_id=69550187]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=102742220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer" unique_id=786578753]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopLeft" type="TabContainer" parent="Control/HBoxContainer/VBoxContainer" unique_id=937114503]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomLeft" type="TabContainer" parent="Control/HBoxContainer/VBoxContainer" unique_id=1347438314]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="Control/HBoxContainer" unique_id=1006605773]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/HBoxContainer" unique_id=1303831300]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopRight" type="TabContainer" parent="Control/HBoxContainer/VBoxContainer2" unique_id=1954312107]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomRight" type="TabContainer" parent="Control/HBoxContainer/VBoxContainer2" unique_id=1408763195]
+layout_mode = 2
+size_flags_vertical = 3
