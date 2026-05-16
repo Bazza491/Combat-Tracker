@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://fblornf4krm1"]
+
+[ext_resource type="Script" uid="uid://x7yinpcnuwq6" path="res://entities/windows/text_tracker/text_tracker.gd" id="1_h6etq"]
+
+[node name="TextTracker" type="Control" unique_id=1355766921 node_paths=PackedStringArray("display_text", "line_edit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h6etq")
+display_text = NodePath("VSplitContainer/MarginContainer/RichTextLabel")
+line_edit = NodePath("VSplitContainer/MarginContainer2/LineEdit")
+
+[node name="Panel" type="Panel" parent="." unique_id=1314756047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1230082063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offsets = PackedInt32Array(-8)
+split_offset = -8
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer" unique_id=1984629833]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VSplitContainer/MarginContainer" unique_id=1893685228]
+layout_mode = 2
+focus_mode = 2
+bbcode_enabled = true
+text = "adasda as das d
+ad asd"
+selection_enabled = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer" unique_id=1154841780]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="LineEdit" type="LineEdit" parent="VSplitContainer/MarginContainer2" unique_id=1204784055]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Type Here..."
