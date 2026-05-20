@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://x7yinpcnuwq6" path="res://entities/windows/text_tracker/text_tracker.gd" id="1_h6etq"]
 
-[node name="TextTracker" type="Control" unique_id=1355766921 node_paths=PackedStringArray("display_text", "line_edit")]
+[node name="TextTracker" type="Control" unique_id=1355766921 node_paths=PackedStringArray("display_text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6etq")
 display_text = NodePath("VSplitContainer/MarginContainer/RichTextLabel")
-line_edit = NodePath("VSplitContainer/MarginContainer2/LineEdit")
 
 [node name="Panel" type="Panel" parent="." unique_id=1314756047]
 layout_mode = 1
