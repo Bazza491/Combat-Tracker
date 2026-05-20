@@ -34,3 +34,31 @@ static func roll(die_type: Dice.Type) -> int:
 	if die_type == Dice.Type.FLAT_DAMAGE: return 0
 	
 	return randi_range(1, die_type)
+
+
+static func roll_notation(notation: String) -> int:
+	var regex := RegEx.new()
+	if regex.compile("^(\\d+)[dD](\\d+)([+-]\\d+)?$") != OK:
+		return -1
+	
+	var regex_match := regex.search(notation.strip_edges())
+	if regex_match == null:
+		return -1
+	
+	var num_dice := int(regex_match.get_string(1))
+	var die_size := int(regex_match.get_string(2))
+	var modifier := 0
+	if regex_match.get_string(3) != "":
+		modifier = int(regex_match.get_string(3))
+	
+	if num_dice <= 0 or die_size <= 0:
+		return -1
+	
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var total := modifier
+	for _i in num_dice:
+		total += rng.randi_range(1, die_size)
+	
+	return total
