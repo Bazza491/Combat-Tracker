@@ -40,6 +40,9 @@ func get_hp_ratio(clamp_zero: bool = true) -> float:
 func is_bloodied() -> bool:
 	return get_hp_ratio() <= 0.5
 
+func is_dead() -> bool:
+	return get_hp_ratio(false) <= 0.0
+
 
 func get_label() -> String:
 	if id.is_empty(): return str(number)
