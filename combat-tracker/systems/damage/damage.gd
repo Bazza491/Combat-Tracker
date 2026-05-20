@@ -17,6 +17,12 @@ enum Type {
 	THUNDER
 }
 
+enum Vulnerability {
+	NONE = 2,
+	VULNERABLE = 4,
+	RESISTANT = 1
+}
+
 const TYPE_TEXT := {
 	Type.ACID: "Acid",
 	Type.BLUDGEONING: "Bludgeoning",
@@ -48,3 +54,6 @@ const DAMAGE_TYPE_COLOR := {
 	Type.SLASHING: Color("#D64545"),     # blood red
 	Type.THUNDER: Color("#5DA9FF"),      # storm blue
 }
+
+static func v_multiplier(vulnerability: Vulnerability) -> float:
+	return vulnerability/2.0
