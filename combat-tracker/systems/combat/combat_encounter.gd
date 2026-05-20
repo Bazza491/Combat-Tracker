@@ -3,7 +3,7 @@ class_name CombatEncounter
 
 @export var entities: Dictionary[String, Entity] = {}
 
-@export var 
+#@export var 
 
 @export_group("Visuals")
 
