@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6etq")
-display_text = NodePath("VSplitContainer/MarginContainer/RichTextLabel")
+display_text = NodePath("VSplitContainer/MarginContainer/EnemyDisplay")
 
 [node name="Panel" type="Panel" parent="." unique_id=1314756047]
 layout_mode = 1
@@ -39,14 +39,13 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VSplitContainer/MarginContainer" unique_id=1893685228]
+[node name="EnemyDisplay" type="RichTextLabel" parent="VSplitContainer/MarginContainer" unique_id=1893685228]
 layout_mode = 2
 focus_mode = 2
 bbcode_enabled = true
 text = "[b]witch[/b] 50hp [grappled] [prone]"
 selection_enabled = true
 script = ExtResource("2_lhh1o")
-text_unformatted = "witch "
 
 [node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer" unique_id=1154841780]
 layout_mode = 2
@@ -56,7 +55,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="LineEdit" type="LineEdit" parent="VSplitContainer/MarginContainer2" unique_id=1204784055]
+[node name="Terminal" type="LineEdit" parent="VSplitContainer/MarginContainer2" unique_id=1204784055]
 layout_mode = 2
 size_flags_vertical = 3
-placeholder_text = "Type Here..."
+placeholder_text = "Use command \"help\" for list of commands"
