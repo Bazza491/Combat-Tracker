@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://fblornf4krm1"]
 
 [ext_resource type="Script" uid="uid://x7yinpcnuwq6" path="res://entities/windows/text_tracker/text_tracker.gd" id="1_h6etq"]
+[ext_resource type="Script" uid="uid://bsskynxgy8vin" path="res://entities/windows/text_tracker/rich_text_enemy_display.gd" id="2_lhh1o"]
 
 [node name="TextTracker" type="Control" unique_id=1355766921 node_paths=PackedStringArray("display_text")]
 layout_mode = 3
@@ -42,9 +43,10 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 focus_mode = 2
 bbcode_enabled = true
-text = "adasda as das d
-ad asd"
+text = "[b]witch[/b] 50hp [grappled] [prone]"
 selection_enabled = true
+script = ExtResource("2_lhh1o")
+text_unformatted = "witch "
 
 [node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer" unique_id=1154841780]
 layout_mode = 2
