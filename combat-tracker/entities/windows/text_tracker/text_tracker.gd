@@ -72,6 +72,8 @@ func _process_command(input: String) -> void:
 			pass
 		Command.DAMAGE:
 			pass
+	
+	terminal.clear()
 
 
 func _ready() -> void:
@@ -80,6 +82,7 @@ func _ready() -> void:
 	#_initialise_combat_encounter()
 	_connect_signals() 
 		# including terminal.text_submitted
+	Text.test()
 
 
 func _clear_display() -> void:

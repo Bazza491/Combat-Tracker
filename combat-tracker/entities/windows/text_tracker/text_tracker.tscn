@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://x7yinpcnuwq6" path="res://entities/windows/text_tracker/text_tracker.gd" id="1_h6etq"]
 [ext_resource type="Script" uid="uid://bsskynxgy8vin" path="res://entities/windows/text_tracker/rich_text_enemy_display.gd" id="2_lhh1o"]
 
-[node name="TextTracker" type="Control" unique_id=1355766921 node_paths=PackedStringArray("display_text")]
+[node name="TextTracker" type="Control" unique_id=1355766921 node_paths=PackedStringArray("display_text", "terminal")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6etq")
 display_text = NodePath("VSplitContainer/MarginContainer/EnemyDisplay")
+terminal = NodePath("VSplitContainer/MarginContainer2/Terminal")
 
 [node name="Panel" type="Panel" parent="." unique_id=1314756047]
 layout_mode = 1
@@ -59,3 +60,6 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Use command \"help\" for list of commands"
+keep_editing_on_text_submit = true
+clear_button_enabled = true
+select_all_on_focus = true
