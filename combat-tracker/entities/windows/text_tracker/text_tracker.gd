@@ -101,3 +101,11 @@ func _connect_signals() -> void:
 
 func _pick_command(input: String) -> Command:
 	return Command.NONE
+
+
+func refresh() -> void:
+	display_text.text = \
+	"""
+	bat 35hp [Grappled] [Prone]
+	bat2 15hp [Bloodied] [Sapped]
+	"""
