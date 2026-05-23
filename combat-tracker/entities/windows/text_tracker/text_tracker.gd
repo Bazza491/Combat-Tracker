@@ -48,6 +48,7 @@ option in alphabetical order
 	order
 """
 extends Control
+class_name TextTracker
 
 @export var display_text: RichTextLabel
 @export var terminal: LineEdit
@@ -66,12 +67,11 @@ enum Command {
 
 
 func _process_command(input: String) -> void:
-	var command: Command = _pick_command(input)
-	match command:
-		Command.NONE:
-			pass
-		Command.DAMAGE:
-			pass
+	var args: Array[String] = input.strip_edges().split(" ", false)
+	var command: Command = _pick_command(args)
+	
+	args.pop_front()
+	CommandHandler.handle_command(command, args)
 	
 	terminal.clear()
 
@@ -102,7 +102,7 @@ func _connect_signals() -> void:
 	terminal.text_submitted.connect(_process_command)
 
 
-func _pick_command(input: String) -> Command:
+func _pick_command(input: Array[String]) -> Command:
 	return Command.NONE
 
 

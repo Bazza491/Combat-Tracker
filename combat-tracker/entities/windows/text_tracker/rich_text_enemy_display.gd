@@ -9,7 +9,6 @@ class_name EnemyDisplay
 
 func refresh() -> void:
 	text = "" # also clears tags?
-	text_unformatted = text_unformatted.replace(
+	text = text_unformatted.replace(
 		"[bloodied]", "[bloodied]Bloodied[/bloodied]"
 		)
-	text = text_unformatted
