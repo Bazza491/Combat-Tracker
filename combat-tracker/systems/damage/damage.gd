@@ -2,6 +2,7 @@ extends Object
 class_name Damage
 
 enum Type {
+	NONE,
 	ACID,
 	BLUDGEONING,
 	COLD,

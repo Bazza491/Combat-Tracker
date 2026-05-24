@@ -53,6 +53,9 @@ class_name TextTracker
 @export var display_text: RichTextLabel
 @export var terminal: LineEdit
 
+var encounter: CombatEncounter = CombatEncounter.new()
+
+@onready var command_handler = CommandHandler.new(encounter)
 
 enum Command {
 	NONE,
@@ -71,7 +74,7 @@ func _process_command(input: String) -> void:
 	var command: Command = _pick_command(args)
 	
 	args.pop_front()
-	CommandHandler.handle_command(command, args)
+	command_handler.handle_command(command, args)
 	
 	terminal.clear()
 
