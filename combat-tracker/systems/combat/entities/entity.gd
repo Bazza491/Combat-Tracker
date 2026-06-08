@@ -16,8 +16,13 @@ signal hp_changed(current_hp: int, max_hp: int)
 
 @export_multiline("write notes here...") var notes: String
 
-func damage(amount: int) -> void:
-	set_hp(current_hp - amount)
+func damage(amount: int, type: Damage.Type) -> void:
+	var final: float = 0.0
+	final = amount * Damage.v_multiplier(
+		vulnerabilities.get(type, Damage.Vulnerability.NONE)
+		)
+	
+	set_hp(current_hp - int(final))
 
 func heal(amount: int) -> void:
 	set_hp(current_hp + amount)
