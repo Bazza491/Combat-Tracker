@@ -29,7 +29,7 @@ const COMMAND_ALIASES: Dictionary = {
 	"turns": Command.SET_TURNS_LIST,
 }
 
-@export var display_text: RichTextLabel
+@export var display_text: EnemyDisplay
 @export var terminal: LineEdit
 
 var encounter: CombatEncounter = CombatEncounter.new()
@@ -39,7 +39,8 @@ var encounter: CombatEncounter = CombatEncounter.new()
 
 func _ready() -> void:
 	_connect_signals()
-	display_text.text = TUTORIAL_TEXT
+	_set_display_text(TUTORIAL_TEXT)
+	display_text.refresh()
 
 
 func _connect_signals() -> void:
@@ -54,6 +55,7 @@ func _process_command(input: String) -> void:
 	command_handler.handle_command(_pick_command(args), args.slice(1))
 	terminal.clear()
 	refresh()
+	display_text.refresh()
 
 ## Rebuilds the text display from the current combat encounter state.
 func refresh() -> void:
@@ -61,13 +63,16 @@ func refresh() -> void:
 	for entity in encounter.entities:
 		lines.append(_build_entity_line(entity))
 	
-	display_text.text = "\n".join(lines) if not lines.is_empty() else EMPTY_ENCOUNTER_TEXT
+	_set_display_text("\n".join(lines) if not lines.is_empty() else EMPTY_ENCOUNTER_TEXT)
 
 
 func _split_command_input(input: String) -> Array[String]:
 	var args: Array[String] = []
 	args.assign(input.strip_edges().split(" ", false))
 	return args
+
+func _set_display_text(value: String) -> void:
+	display_text.text_unformatted = value
 
 func _pick_command(args: Array[String]) -> Command:
 	if args[0].to_lower() == "turn" or args[0].to_lower() == "trn":
