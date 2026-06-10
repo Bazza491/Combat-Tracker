@@ -38,6 +38,26 @@ Follow these rules for all GDScript files:
 
 ## Testing & Validation
 
+### GUT Unit Tests
+Use GUT for unit tests that confirm backend systems behave correctly. Tests are project assets, not disposable scratch work: when a test is relevant to the behavior being added or fixed, leave it in the repository so regressions are caught later.
+
+Keep GUT tests under `combat-tracker/test/`, which maps to `res://test/` in Godot. Mirror the source layout inside that folder so related tests are easy to find; for example, tests for `res://systems/dice/dice.gd` belong near `res://test/systems/dice/test_dice.gd`.
+
+Follow GUT's discovery conventions unless there is a strong reason not to:
+- Test script filenames should start with `test_` and end with `.gd`.
+- Test functions should start with `test_`.
+- Test scripts should extend `res://addons/gut/test.gd`.
+
+When changing shared logic in `systems/`, add or update focused GUT tests for the behavior. Prefer testing through public system APIs such as `combat_encounter.gd` instead of duplicating internal implementation details in the test.
+
+Design system code so it can be exercised from GUT without opening editor-authored scenes:
+- Put rules, state changes, dice math, damage math, and command parsing in `systems/` scripts or Resources that can be created with `.new()`.
+- Keep UI nodes in `entities/` thin. They should call system APIs and render results, not own rules that would require scene tests to validate.
+- Prefer deterministic system APIs. If code needs randomness, time, or engine singletons, isolate that dependency so tests can supply a known value, seed, stub, or double.
+- Prefer observable outcomes over hidden side effects: return useful values, mutate the shared encounter Resource intentionally, or emit signals that GUT can watch with `watch_signals()`.
+- Keep tests isolated. Create fresh Resources in `before_each()` when state matters, use `autofree()`, `autoqfree()`, or `add_child_autofree()` for Nodes, and avoid tests that depend on run order.
+- Use GUT doubles/stubs for boundaries that are awkward or slow to exercise directly, but do not mock the core combat rules when a real `CombatEncounter` or entity Resource can be used.
+
 ### Godot Headless Checks
 When running Godot from the Codex sandbox, use the right command form first and keep Godot's user data contained. Native Godot crash/error popups are not a useful way to notify the user that a command failed: they interrupt the user's desktop, are not captured in the transcript, and can obscure whether the project failed or the command was wrong.
 
