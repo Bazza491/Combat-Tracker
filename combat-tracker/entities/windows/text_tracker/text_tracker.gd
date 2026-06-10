@@ -50,6 +50,7 @@ func _connect_signals() -> void:
 func _process_command(input: String) -> void:
 	var args: Array[String] = _split_command_input(input)
 	if args.is_empty():
+		terminal.clear()
 		return
 	
 	command_handler.handle_command(_pick_command(args), args.slice(1))

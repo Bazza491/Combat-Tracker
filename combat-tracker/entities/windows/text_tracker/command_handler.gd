@@ -76,6 +76,13 @@ func _add_enemy(args: Array[String]) -> void:
 				elif parse_mode != Damage.Vulnerability.NONE:
 					_add_vulnerability(vulnerabilities, args[index], parse_mode)
 	
+	if max_hp <= 0:
+		push_warning("Enemy command needs positive hit points.")
+		return
+	if quantity <= 0:
+		push_warning("Enemy command needs a positive quantity.")
+		return
+	
 	encounter.add_enemy(args[0], max_hp, ac, vulnerabilities, quantity)
 
 
