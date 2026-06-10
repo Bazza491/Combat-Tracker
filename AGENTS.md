@@ -36,6 +36,29 @@ Follow these rules for all GDScript files:
 - **Function Comments**: Any function that is used in another class, or is long enough that reading a comment is faster than reading the function itself, and does not have a name that fully explains its function, must have a double hashtag (`##`) comment (single-line if possible) above the function name. Describe *what* the function does, not *how* it does it.
 - **Maintain Documentation Integrity**: Always update code comments, inline documentation, and this `AGENTS.md` file immediately when any changes or edits would render them outdated or inaccurate.
 
+## Testing & Validation
+
+### Godot Headless Checks
+When running Godot from the Codex sandbox, use the right command form first and keep Godot's user data contained. Native Godot crash/error popups are not a useful way to notify the user that a command failed: they interrupt the user's desktop, are not captured in the transcript, and can obscure whether the project failed or the command was wrong.
+
+Always point `APPDATA` and `LOCALAPPDATA` at a unique writable temporary folder in the same PowerShell invocation before launching Godot. Do not point them at the project folder, because that pollutes the repository with generated `Godot/app_userdata/.../logs` files. Use a unique folder per Godot process, especially when running checks in parallel, so separate runs cannot collide over the same log files.
+
+For full project startup validation, use this pattern:
+```powershell
+$godot_user_data = Join-Path ([System.IO.Path]::GetTempPath()) ("combat-tracker-godot-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Force -Path $godot_user_data | Out-Null
+$env:APPDATA = $godot_user_data
+$env:LOCALAPPDATA = $godot_user_data
+godot --headless --path "combat-tracker" --quit
+```
+
+For targeted script parsing, use the same environment setup and swap only the final line. `--check-only` is for script parsing with `--script`; do not use it as a general project startup check.
+```powershell
+godot --headless --path "combat-tracker" --check-only --script "res://systems/combat/combat_encounter.gd"
+```
+
+If a Godot check fails, inspect the console output first. Logs will be under the temporary folder assigned to `APPDATA`/`LOCALAPPDATA`, not inside the repository. If testing takes multiple attempts, say that in the final response and consider refining this section so the next agent can get it right first try.
+
 ## Roadmap & Planned Features
 
 The ultimate goal is to build a highly flexible, multi-window tool.
