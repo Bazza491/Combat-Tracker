@@ -71,7 +71,7 @@ The ultimate goal is to build a highly flexible, multi-window tool.
 
 ## Existing Subsystems
 
-- **Combat (`systems/combat/`)**: Contains `combat_encounter.gd` (the core state) and `entity.gd` (data for individual combatants, supporting clamped negative HP for dying states).
+- **Combat (`systems/combat/`)**: Contains `combat_encounter.gd` (the core state) plus `Entity`, `Player`, and `Enemy` Resources for individual combatants. Player damage can fall to unconscious or lethal negative HP, while enemy damage clamps at 0 HP.
 - **Damage (`systems/damage/`)**: Enums for damage types, vulnerability math, and color mappings.
 - **Dice (`systems/dice/`)**: Notation parser (e.g., `1d20+5`) and rolling logic.
 - **Text (`systems/text/`)**: Utilities for string similarity and closest-match searches.

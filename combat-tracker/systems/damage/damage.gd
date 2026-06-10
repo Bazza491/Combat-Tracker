@@ -25,6 +25,7 @@ enum Vulnerability {
 }
 
 const TYPE_TEXT := {
+	Type.NONE: "None",
 	Type.ACID: "Acid",
 	Type.BLUDGEONING: "Bludgeoning",
 	Type.COLD: "Cold",
@@ -38,6 +39,23 @@ const TYPE_TEXT := {
 	Type.RADIANT: "Radiant",
 	Type.SLASHING: "Slashing",
 	Type.THUNDER: "Thunder",
+}
+
+const TEXT_TYPE := {
+	"None": Type.NONE,
+	"Acid": Type.ACID,
+	"Bludgeoning": Type.BLUDGEONING,
+	"Cold": Type.COLD,
+	"Fire": Type.FIRE,
+	"Force": Type.FORCE,
+	"Lightning": Type.LIGHTNING,
+	"Necrotic": Type.NECROTIC,
+	"Piercing": Type.PIERCING,
+	"Poison": Type.POISON,
+	"Psychic": Type.PSYCHIC,
+	"Radiant": Type.RADIANT,
+	"Slashing": Type.SLASHING,
+	"Thunder": Type.THUNDER,
 }
 
 const DAMAGE_TYPE_COLOR := {
@@ -56,5 +74,13 @@ const DAMAGE_TYPE_COLOR := {
 	Type.THUNDER: Color("#5DA9FF"),      # storm blue
 }
 
-static func v_multiplier(vulnerability: Vulnerability) -> float:
+static func vuln_multiplier(vulnerability: Vulnerability) -> float:
 	return vulnerability/2.0
+
+static func type_text(type: Type) -> String:
+	return TYPE_TEXT.get(type, "None")
+
+static func type_from_text(text: String) -> Type:
+	var type_names: Array[String] = []
+	type_names.assign(TEXT_TYPE.keys())
+	return TEXT_TYPE.get(Text.closest_match(type_names, text), Type.NONE)

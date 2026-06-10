@@ -84,7 +84,7 @@ func _pick_command(args: Array[String]) -> Command:
 
 
 func _build_entity_line(entity: Entity) -> String:
-	var notes: Array[String] = _build_entity_notes(entity)
+	var notes: Array[String] = entity.build_entity_notes()
 	var line: String = "%s %d/%dhp" % [
 		_build_entity_label_text(entity),
 		entity.current_hp,
@@ -102,35 +102,3 @@ func _build_entity_label_text(entity: Entity) -> String:
 	return "[bloodied]%s[/bloodied]" % entity.get_label() \
 		if entity.is_bloodied() \
 		else entity.get_label()
-
-func _build_entity_notes(entity: Entity) -> Array[String]:
-	var notes: Array[String] = []
-	if entity.is_dead():
-		notes.append("[Dead]")
-	elif entity.is_bloodied():
-		notes.append("[Bloodied]")
-	
-	notes.append_array(_build_vulnerability_notes(entity))
-	return notes
-
-func _build_vulnerability_notes(entity: Entity) -> Array[String]:
-	var resistant_types: Array[String] = []
-	var vulnerable_types: Array[String] = []
-	
-	for type in entity.vulnerabilities:
-		match entity.vulnerabilities[type]:
-			Damage.Vulnerability.RESISTANT:
-				resistant_types.append(_get_damage_type_display_name(type))
-			Damage.Vulnerability.VULNERABLE:
-				vulnerable_types.append(_get_damage_type_display_name(type))
-	
-	var notes: Array[String] = []
-	if not resistant_types.is_empty():
-		notes.append("[res: %s]" % ", ".join(resistant_types))
-	if not vulnerable_types.is_empty():
-		notes.append("[vuln: %s]" % ", ".join(vulnerable_types))
-	
-	return notes
-
-func _get_damage_type_display_name(type: Damage.Type) -> String:
-	return Damage.TYPE_TEXT.get(type, "None").to_lower()

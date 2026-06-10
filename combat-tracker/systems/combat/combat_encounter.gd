@@ -39,7 +39,7 @@ func add_enemy(
 	assert(quantity > 0, "Enemy quantity must be positive.")
 	
 	for index in quantity:
-		var entity: Entity = Entity.new()
+		var entity: Enemy = Enemy.new()
 		entity.id = id
 		entity.number = 0 if quantity == 1 or index == 0 else index + 1
 		entity.max_hp = max_hp

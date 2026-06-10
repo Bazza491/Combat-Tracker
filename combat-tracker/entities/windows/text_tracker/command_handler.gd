@@ -98,16 +98,7 @@ func _parse_amount(text: String) -> int:
 	return 0
 
 func _parse_damage_type(text: String) -> Damage.Type:
-	var type_names: Array[String] = []
-	type_names.assign(Damage.TYPE_TEXT.values())
-	
-	var matched_type: Variant = Damage.TYPE_TEXT.find_key(
-		Text.closest_match(type_names, text)
-		)
-	if matched_type == null:
-		return Damage.Type.NONE
-	
-	return matched_type
+	return Damage.type_from_text(text)
 
 func _add_vulnerability(
 	vulnerabilities: Dictionary[Damage.Type, Damage.Vulnerability],
