@@ -18,6 +18,8 @@ Keep the file structure strictly organized by purpose. Think carefully about whe
 
 ## Coding Conventions
 
+- **Do NOT edit `.tscn` or `.tres` files**: Unless explicitly asked, never manually edit Godot scene (`.tscn`) or resource (`.tres`) files. Always instruct the user (or leave a TODO comment) to make the necessary changes in the Godot Editor. This ensures these files are never corrupted or incorrectly formatted by manual text edits.
+
 Follow these rules for all GDScript files:
 
 - **Indentation**: ALWAYS use tabs. Never use spaces.
@@ -27,6 +29,12 @@ Follow these rules for all GDScript files:
   - Use a single line break between related functions within a group.
   - Use double line breaks to separate major groups of functions.
   - Order your function groups so they match the order of their corresponding variable groups. 
+- **Negative Space Programming**: Show what should not happen by what you do not write. Do not create unnecessary extra checks that return silently. Where a check is reasonable to add and possible to fail, use `assert(check, "error msg")` to crash immediately with a specific and useful error message.
+- **Avoid Useless Intermediate Variables**: Keep code concise. If a variable is only used once, inline it. For example, instead of `var name := args[0]; find(name)`, use `find(args[0])`. If a line gets too long, split it across multiple lines with a backslash `\` or by putting function arguments on new lines rather than creating intermediate variables.
+- **Descriptive Naming**: Keep helper function names verbose and descriptive. It must be clear what a function does based solely on its name.
+- **Explicit Type Hints**: Prefer explicit type hints over type inference (e.g., use `var target: Entity = ...` instead of `var target := ...`).
+- **Function Comments**: Any function that is used in another class, or is long enough that reading a comment is faster than reading the function itself, and does not have a name that fully explains its function, must have a double hashtag (`##`) comment (single-line if possible) above the function name. Describe *what* the function does, not *how* it does it.
+- **Maintain Documentation Integrity**: Always update code comments, inline documentation, and this `AGENTS.md` file immediately when any changes or edits would render them outdated or inaccurate.
 
 ## Roadmap & Planned Features
 
