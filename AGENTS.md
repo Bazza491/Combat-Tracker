@@ -48,6 +48,15 @@ Follow GUT's discovery conventions unless there is a strong reason not to:
 - Test functions should start with `test_`.
 - Test scripts should extend `res://addons/gut/test.gd`.
 
+Run the normal full GUT suite with this PowerShell command. It discovers `test_*.gd` scripts under `res://test/`, includes subdirectories, and keeps Godot user data in a temporary folder:
+```powershell
+$godot_user_data = Join-Path ([System.IO.Path]::GetTempPath()) ("combat-tracker-godot-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Force -Path $godot_user_data | Out-Null
+$env:APPDATA = $godot_user_data
+$env:LOCALAPPDATA = $godot_user_data
+godot --headless --path "combat-tracker" -s "addons/gut/gut_cmdln.gd" -gdir="res://test" -ginclude_subdirs -gdisable_colors
+```
+
 When changing shared logic in `systems/`, add or update focused GUT tests for the behavior. Prefer testing through public system APIs such as `combat_encounter.gd` instead of duplicating internal implementation details in the test.
 
 Design system code so it can be exercised from GUT without opening editor-authored scenes:
