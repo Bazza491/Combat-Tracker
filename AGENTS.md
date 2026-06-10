@@ -18,7 +18,7 @@ Keep the file structure strictly organized by purpose. Think carefully about whe
 
 ## Coding Conventions
 
-- **Do NOT edit `.tscn` or `.tres` files**: Unless explicitly asked, never manually edit Godot scene (`.tscn`) or resource (`.tres`) files. Always instruct the user (or leave a TODO comment) to make the necessary changes in the Godot Editor. This ensures these files are never corrupted or incorrectly formatted by manual text edits.
+- **Do NOT edit `.tscn`, `.tres`, or `.uid` files**: Unless explicitly asked, never manually edit Godot scene (`.tscn`), resource (`.tres`), or generated UID (`.uid`) files. Always instruct the user (or leave a TODO comment) to make scene/resource changes in the Godot Editor. Let the editor create script UID files itself to avoid duplicate or invalid IDs.
 
 Follow these rules for all GDScript files:
 
